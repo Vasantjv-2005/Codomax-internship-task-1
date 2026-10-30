@@ -22,6 +22,7 @@
 
 ## 📑 Table of Contents
 
+- [Automated Code Review](#automated-code-review)
 - [📌 Project Overview](#-project-overview)
 - [🚀 Quick Start & Local Setup](#-quick-start--local-setup)
 - [🔑 Demo Credentials](#-demo-credentials)
@@ -40,10 +41,12 @@
 - [💾 LocalStorage Data Schema](#-localstorage-data-schema)
 - [📋 Verification Checklist](#-verification-checklist)
 - [🛡️ Client-Side vs. Production Architecture](#️-client-side-vs-production-architecture)
-- [👨‍💻 Submission & Internship Context](#-submission--internship-context)
+- [👨‍💻 Submission & Internship Context](#-submission--internship-context-)
 
 ---
+## Automated Code Review
 
+This project uses CodeRabbit to review pull requests.
 ## 📌 Project Overview
 
 **BlogSpace** is an editorial, full-featured web publishing application developed for **Codomax Internship Task 1**.
