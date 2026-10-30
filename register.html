@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create a new BlogSpace author account to share your ideas and publish articles." />
+  <title>Create an Account - BlogSpace</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="BlogSpace Homepage">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+          </svg>
+        </div>
+        <span>Blog<span class="text-gradient">Space</span></span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-secondary btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-wrapper">
+    <div class="auth-card" style="max-width: 480px;">
+      <div class="auth-header">
+        <div class="auth-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="8.5" cy="7" r="4"></circle>
+            <line x1="20" y1="8" x2="20" y2="14"></line>
+            <line x1="23" y1="11" x2="17" y2="11"></line>
+          </svg>
+        </div>
+        <h1 class="auth-title">Join BlogSpace</h1>
+        <p class="auth-subtitle">Start writing, sharing knowledge, and building an audience.</p>
+      </div>
+
+      <!-- Educational Notice Banner -->
+      <div class="demo-banner" role="note">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        <div>
+          <strong>Educational Frontend Note:</strong>
+          Data is saved in browser <code>localStorage</code>. For production, accounts and password hashing must be handled on a secure server.
+        </div>
+      </div>
+
+      <form id="register-form" novalidate>
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="fullname" class="form-label">Full Name</label>
+          <div class="form-control-wrap">
+            <input 
+              type="text" 
+              id="fullname" 
+              class="form-control" 
+              placeholder="e.g. Maya Lin" 
+              required 
+              autocomplete="name"
+            />
+            <div class="invalid-feedback" id="name-feedback">Please enter your full name.</div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="reg-email" class="form-label">Email Address</label>
+          <div class="form-control-wrap">
+            <input 
+              type="email" 
+              id="reg-email" 
+              class="form-control" 
+              placeholder="name@example.com" 
+              required 
+              autocomplete="email"
+            />
+            <div class="invalid-feedback" id="reg-email-feedback">Please enter a valid email address.</div>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="reg-password" class="form-label">Password</label>
+          <div class="form-control-wrap">
+            <input 
+              type="password" 
+              id="reg-password" 
+              class="form-control" 
+              placeholder="Create a password (min. 6 characters)" 
+              required 
+              autocomplete="new-password"
+            />
+            <button type="button" class="toggle-password-btn" id="toggle-reg-pass-btn" aria-label="Toggle password visibility">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+            <div class="invalid-feedback" id="reg-password-feedback">Password must be at least 6 characters.</div>
+          </div>
+
+          <!-- Password strength meter -->
+          <div class="password-strength-container" id="strength-container" style="display: none;">
+            <div class="strength-bars">
+              <div class="strength-bar" id="bar-1"></div>
+              <div class="strength-bar" id="bar-2"></div>
+              <div class="strength-bar" id="bar-3"></div>
+              <div class="strength-bar" id="bar-4"></div>
+            </div>
+            <div class="strength-text" id="strength-text">Password strength</div>
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label for="confirm-password" class="form-label">Confirm Password</label>
+          <div class="form-control-wrap">
+            <input 
+              type="password" 
+              id="confirm-password" 
+              class="form-control" 
+              placeholder="Confirm your password" 
+              required 
+              autocomplete="new-password"
+            />
+            <button type="button" class="toggle-password-btn" id="toggle-confirm-pass-btn" aria-label="Toggle password visibility">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+            <div class="invalid-feedback" id="confirm-password-feedback">Passwords do not match.</div>
+          </div>
+        </div>
+
+        <!-- Terms & Conditions Checkbox -->
+        <div class="form-group">
+          <label class="checkbox-label" style="align-items: flex-start;">
+            <input type="checkbox" id="terms-agree" style="margin-top: 3px;" required />
+            <span style="font-size: 0.825rem;">
+              I agree to the <a href="#" id="terms-link" class="form-link">Terms of Service</a> and Community Publishing Guidelines.
+            </span>
+          </label>
+          <div class="invalid-feedback" id="terms-feedback">You must accept the terms to create an account.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="reg-submit-btn" style="width: 100%;">
+          <span id="reg-btn-text">Create Account</span>
+          <span id="reg-btn-spinner" style="display: none;">Setting up account...</span>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html" class="form-link">Sign in</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Terms Modal -->
+  <div class="modal-overlay" id="terms-modal" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="terms-title">Community Guidelines & Terms</h3>
+        <button class="modal-close-btn" id="close-terms-modal" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+        <p style="margin-bottom: 0.75rem;"><strong>1. Respectful Communication:</strong> Authors and commenters agree to maintain constructive and respectful discourse.</p>
+        <p style="margin-bottom: 0.75rem;"><strong>2. Originality:</strong> Published content should be authored by you or appropriately credited.</p>
+        <p><strong>3. Educational Demo:</strong> BlogSpace is an open demonstration frontend project. Data is stored locally in your browser.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" id="agree-terms-btn">I Understand</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // If already logged in, redirect to dashboard
+      if (Auth.getCurrentUser()) {
+        window.location.href = 'dashboard.html';
+        return;
+      }
+
+      // Password visibility toggles
+      Auth.setupPasswordToggle('reg-password', 'toggle-reg-pass-btn');
+      Auth.setupPasswordToggle('confirm-password', 'toggle-confirm-pass-btn');
+
+      // Password strength meter
+      const passInput = document.getElementById('reg-password');
+      const strengthContainer = document.getElementById('strength-container');
+      const bars = [
+        document.getElementById('bar-1'),
+        document.getElementById('bar-2'),
+        document.getElementById('bar-3'),
+        document.getElementById('bar-4')
+      ];
+      const strengthText = document.getElementById('strength-text');
+
+      passInput.addEventListener('input', () => {
+        const val = passInput.value;
+        if (!val) {
+          strengthContainer.style.display = 'none';
+          return;
+        }
+        strengthContainer.style.display = 'block';
+
+        let score = 0;
+        if (val.length >= 6) score++;
+        if (val.length >= 10) score++;
+        if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score++;
+        if (/[0-9]/.test(val) || /[^A-Za-z0-9]/.test(val)) score++;
+
+        bars.forEach((b, idx) => {
+          b.className = 'strength-bar';
+          if (idx < score) {
+            if (score <= 1) b.classList.add('weak');
+            else if (score === 2) b.classList.add('fair');
+            else if (score === 3) b.classList.add('good');
+            else b.classList.add('strong');
+          }
+        });
+
+        const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+        strengthText.textContent = `Strength: ${labels[score - 1] || 'Weak'}`;
+      });
+
+      // Terms modal
+      const termsLink = document.getElementById('terms-link');
+      const termsModal = document.getElementById('terms-modal');
+      const closeTermsModal = document.getElementById('close-terms-modal');
+      const agreeTermsBtn = document.getElementById('agree-terms-btn');
+      const termsAgreeCheckbox = document.getElementById('terms-agree');
+
+      if (termsLink && termsModal) {
+        termsLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          termsModal.classList.add('active');
+        });
+      }
+
+      function hideTerms() {
+        if (termsModal) termsModal.classList.remove('active');
+      }
+
+      if (closeTermsModal) closeTermsModal.addEventListener('click', hideTerms);
+      if (agreeTermsBtn) {
+        agreeTermsBtn.addEventListener('click', () => {
+          if (termsAgreeCheckbox) termsAgreeCheckbox.checked = true;
+          hideTerms();
+        });
+      }
+
+      // Registration Form Validation & Submission
+      const form = document.getElementById('register-form');
+      const nameInput = document.getElementById('fullname');
+      const emailInput = document.getElementById('reg-email');
+      const confirmInput = document.getElementById('confirm-password');
+      const submitBtn = document.getElementById('reg-submit-btn');
+      const btnText = document.getElementById('reg-btn-text');
+      const btnSpinner = document.getElementById('reg-btn-spinner');
+
+      const nameFeedback = document.getElementById('name-feedback');
+      const emailFeedback = document.getElementById('reg-email-feedback');
+      const passFeedback = document.getElementById('reg-password-feedback');
+      const confirmFeedback = document.getElementById('confirm-password-feedback');
+      const termsFeedback = document.getElementById('terms-feedback');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const pass = passInput.value;
+        const confirmPass = confirmInput.value;
+        const agreed = termsAgreeCheckbox.checked;
+
+        let isValid = true;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Reset
+        [nameInput, emailInput, passInput, confirmInput].forEach(inp => inp.classList.remove('is-invalid'));
+        termsFeedback.classList.remove('show');
+
+        if (!name) {
+          nameInput.classList.add('is-invalid');
+          nameFeedback.textContent = 'Please enter your full name.';
+          isValid = false;
+        }
+
+        if (!email) {
+          emailInput.classList.add('is-invalid');
+          emailFeedback.textContent = 'Email address is required.';
+          isValid = false;
+        } else if (!emailRegex.test(email)) {
+          emailInput.classList.add('is-invalid');
+          emailFeedback.textContent = 'Please enter a valid email format.';
+          isValid = false;
+        }
+
+        if (!pass) {
+          passInput.classList.add('is-invalid');
+          passFeedback.textContent = 'Password is required.';
+          isValid = false;
+        } else if (pass.length < 6) {
+          passInput.classList.add('is-invalid');
+          passFeedback.textContent = 'Password must be at least 6 characters.';
+          isValid = false;
+        }
+
+        if (!confirmPass) {
+          confirmInput.classList.add('is-invalid');
+          confirmFeedback.textContent = 'Please confirm your password.';
+          isValid = false;
+        } else if (pass !== confirmPass) {
+          confirmInput.classList.add('is-invalid');
+          confirmFeedback.textContent = 'Passwords do not match.';
+          isValid = false;
+        }
+
+        if (!agreed) {
+          termsFeedback.classList.add('show');
+          isValid = false;
+        }
+
+        if (!isValid) return;
+
+        // Loading state
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnSpinner.style.display = 'inline';
+
+        try {
+          const newUser = await Auth.register(name, email, pass);
+          showToast(`Account created successfully! Welcome ${newUser.name}.`, 'success');
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 400);
+        } catch (err) {
+          submitBtn.disabled = false;
+          btnText.style.display = 'inline';
+          btnSpinner.style.display = 'none';
+          showToast(err.message, 'error');
+          emailInput.classList.add('is-invalid');
+          emailFeedback.textContent = err.message;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

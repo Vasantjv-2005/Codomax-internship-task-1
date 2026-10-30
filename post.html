@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Read full article on BlogSpace." />
+  <title>Article - BlogSpace</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-bar" id="reading-progress-bar"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="BlogSpace Homepage">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+          </svg>
+        </div>
+        <span>Blog<span class="text-gradient">Space</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#explore-section" class="nav-link">Explore</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions-container">
+        <!-- Rendered by js/auth.js -->
+      </div>
+
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" id="post-view-wrapper">
+      <!-- Article Header -->
+      <article class="post-view-header">
+        <div>
+          <span class="badge" id="post-category-badge">Category</span>
+        </div>
+
+        <h1 class="post-view-title" id="post-title">Loading Article...</h1>
+
+        <div class="post-view-author-row">
+          <div style="display: flex; align-items: center; gap: 0.65rem;">
+            <img id="post-author-avatar" src="" alt="Author" class="author-thumb" />
+            <span id="post-author-name" style="font-weight: 600; color: var(--text-main);">Author</span>
+          </div>
+          <span>•</span>
+          <span id="post-date">Date</span>
+          <span>•</span>
+          <span id="post-read-time">Read Time</span>
+          <span>•</span>
+          <span id="post-views-count">Views</span>
+        </div>
+      </article>
+
+      <!-- Featured Image -->
+      <div class="post-hero-image-wrap" id="post-hero-image-wrap">
+        <img id="post-hero-image" src="" alt="Featured blog visual" />
+      </div>
+
+      <!-- Article Content Body -->
+      <div class="post-body-container" id="post-body-container">
+        <!-- Formatted content inserted dynamically -->
+      </div>
+
+      <!-- Tags list -->
+      <div style="max-width: 760px; margin: 2rem auto 0; display: flex; flex-wrap: wrap; gap: 0.5rem;" id="post-tags-container">
+        <!-- Tags chips -->
+      </div>
+
+      <!-- Action & Engagement Bar (Likes + Social Share) -->
+      <div class="post-actions-bar">
+        <button class="like-btn" id="like-btn" aria-label="Like this article">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span id="like-count-label">0 Likes</span>
+        </button>
+
+        <div class="share-group">
+          <span style="font-size: 0.85rem; color: var(--text-muted); margin-right: 0.25rem;">Share:</span>
+          <button class="btn btn-secondary btn-sm" id="copy-link-btn" title="Copy Link to Clipboard">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            Copy Link
+          </button>
+          <a href="#" id="share-twitter-btn" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Share on X">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+          </a>
+          <a href="#" id="share-linkedin-btn" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Share on LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <section class="comments-section" aria-labelledby="comments-heading">
+        <h3 id="comments-heading" style="font-size: 1.4rem; margin-bottom: 1.5rem;">
+          Discussion (<span id="comments-count">0</span>)
+        </h3>
+
+        <!-- Add Comment Form -->
+        <div class="comment-card" style="margin-bottom: 2rem;">
+          <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">Leave a Comment</h4>
+          <form id="comment-form" novalidate>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.75rem;">
+              <input 
+                type="text" 
+                id="comment-name" 
+                class="form-control" 
+                placeholder="Your Name (Optional)" 
+              />
+              <span style="font-size: 0.8rem; color: var(--text-muted); align-self: center;">
+                Commenting publicly on this article
+              </span>
+            </div>
+            <div class="form-group">
+              <textarea 
+                id="comment-text" 
+                class="form-control" 
+                rows="3" 
+                placeholder="What are your thoughts on this story?" 
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Post Comment</button>
+          </form>
+        </div>
+
+        <!-- Comments List -->
+        <div id="comments-list">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- Related Stories -->
+      <section style="padding: 3rem 0 5rem; border-top: 1px solid var(--border-color);">
+        <h3 style="font-size: 1.6rem; margin-bottom: 1.75rem;">More Stories from BlogSpace</h3>
+        <div class="blog-grid" id="related-posts-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 BlogSpace. All rights reserved.</p>
+        <p><a href="index.html" style="color: var(--primary);">← Back to Homepage</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/blog.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Reading progress indicator
+      const progressBar = document.getElementById('reading-progress-bar');
+      window.addEventListener('scroll', () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        if (progressBar) progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      });
+
+      // 2. Fetch post by ID from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id') || 'post-101'; // Default to first post if none specified
+      const post = getPostById(postId);
+
+      if (!post) {
+        document.getElementById('post-view-wrapper').innerHTML = `
+          <div class="empty-state" style="margin: 5rem auto;">
+            <div class="empty-state-icon">⚠️</div>
+            <h2 class="empty-state-title">Article Not Found</h2>
+            <p class="empty-state-desc">The article you are looking for may have been deleted or moved.</p>
+            <a href="index.html" class="btn btn-primary">Return to Homepage</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Increment view count
+      incrementPostViews(post.id);
+
+      // 3. Populate Post Header & Body
+      document.title = `${post.title} - BlogSpace`;
+
+      const categoryBadge = document.getElementById('post-category-badge');
+      if (categoryBadge) {
+        categoryBadge.className = `badge ${Blog.getCategoryClass(post.category)}`;
+        categoryBadge.textContent = post.category || 'General';
+      }
+
+      document.getElementById('post-title').textContent = post.title;
+      document.getElementById('post-author-name').textContent = post.authorName || 'Staff Writer';
+      document.getElementById('post-author-avatar').src = post.authorAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150';
+      document.getElementById('post-date').textContent = formatDate(post.createdAt);
+      document.getElementById('post-read-time').textContent = post.readTime || calculateReadingTime(post.content);
+      document.getElementById('post-views-count').textContent = `${(post.views || 0) + 1} views`;
+
+      const heroImg = document.getElementById('post-hero-image');
+      if (heroImg) {
+        heroImg.src = post.image || Blog.DEFAULT_THUMBNAIL;
+        heroImg.alt = post.title;
+      }
+
+      const bodyContainer = document.getElementById('post-body-container');
+      if (bodyContainer) {
+        bodyContainer.innerHTML = post.content || `<p>${sanitizeHTML(post.excerpt || '')}</p>`;
+      }
+
+      // Populate tags
+      const tagsContainer = document.getElementById('post-tags-container');
+      if (tagsContainer && post.tags) {
+        tagsContainer.innerHTML = post.tags.map(t => `<span class="tag-badge" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">#${sanitizeHTML(t)}</span>`).join('');
+      }
+
+      // 4. Like Button Interaction
+      const likeBtn = document.getElementById('like-btn');
+      const likeCountLabel = document.getElementById('like-count-label');
+
+      function updateLikeUi() {
+        const liked = isPostLiked(post.id);
+        if (liked) likeBtn.classList.add('liked');
+        else likeBtn.classList.remove('liked');
+        likeCountLabel.textContent = `${post.likes || 0} Likes`;
+      }
+      updateLikeUi();
+
+      likeBtn.addEventListener('click', () => {
+        const res = toggleLikePost(post.id);
+        post.likes = res.totalLikes;
+        updateLikeUi();
+        showToast(res.liked ? 'Liked this article!' : 'Unliked article', 'info');
+      });
+
+      // 5. Social Share Links
+      const currentUrl = window.location.href;
+      const copyLinkBtn = document.getElementById('copy-link-btn');
+      if (copyLinkBtn) {
+        copyLinkBtn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(currentUrl);
+            showToast('Article URL copied to clipboard!', 'success');
+          } catch (e) {
+            showToast('URL: ' + currentUrl, 'info');
+          }
+        });
+      }
+
+      const shareTwitterBtn = document.getElementById('share-twitter-btn');
+      if (shareTwitterBtn) {
+        shareTwitterBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(currentUrl)}`;
+      }
+
+      const shareLinkedInBtn = document.getElementById('share-linkedin-btn');
+      if (shareLinkedInBtn) {
+        shareLinkedInBtn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+      }
+
+      // 6. Comments Handling
+      const commentsListEl = document.getElementById('comments-list');
+      const commentsCountEl = document.getElementById('comments-count');
+      const commentForm = document.getElementById('comment-form');
+      const commentNameInput = document.getElementById('comment-name');
+      const commentTextInput = document.getElementById('comment-text');
+
+      // Autofill current user name if logged in
+      const currentUser = Auth.getCurrentUser();
+      if (currentUser && commentNameInput) {
+        commentNameInput.value = currentUser.name;
+      }
+
+      function renderComments() {
+        const comments = getPostComments(post.id);
+        if (commentsCountEl) commentsCountEl.textContent = comments.length;
+
+        if (comments.length === 0) {
+          commentsListEl.innerHTML = `
+            <p style="color: var(--text-muted); font-size: 0.9rem; font-style: italic; padding: 1rem 0;">
+              No comments yet. Be the first to share your perspective!
+            </p>
+          `;
+          return;
+        }
+
+        commentsListEl.innerHTML = comments.map(c => `
+          <div class="comment-card">
+            <div class="comment-header">
+              <div class="comment-author-info">
+                <img src="${c.authorAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'}" alt="${sanitizeHTML(c.authorName)}" class="comment-author-avatar" />
+                <span class="comment-author-name">${sanitizeHTML(c.authorName)}</span>
+              </div>
+              <span class="comment-date">${c.date || 'Recent'}</span>
+            </div>
+            <p class="comment-text">${sanitizeHTML(c.text)}</p>
+          </div>
+        `).join('');
+      }
+
+      renderComments();
+
+      commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = commentTextInput.value.trim();
+        if (!text) {
+          showToast('Please type a comment before submitting.', 'error');
+          commentTextInput.focus();
+          return;
+        }
+
+        const name = commentNameInput.value.trim() || (currentUser ? currentUser.name : 'Curious Reader');
+        const avatar = currentUser ? currentUser.avatar : 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150';
+
+        addPostComment(post.id, name, text, avatar);
+        showToast('Comment posted successfully!', 'success');
+        commentTextInput.value = '';
+        renderComments();
+      });
+
+      // 7. Render Related Posts
+      const relatedGrid = document.getElementById('related-posts-grid');
+      if (relatedGrid) {
+        const otherPosts = getPublishedPosts().filter(p => p.id !== post.id).slice(0, 3);
+        Blog.renderBlogGrid(otherPosts, relatedGrid);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BlogSpace - A modern, responsive blog platform where writers share ideas, technology insights, and inspiring stories." />
+  <meta name="keywords" content="blog, programming, technology, AI, productivity, lifestyle, articles" />
+  <meta name="author" content="BlogSpace" />
+  <title>BlogSpace - Your Ideas Deserve to Be Read</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="BlogSpace Homepage">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+            <path d="M2 2l7.586 7.586"></path>
+            <circle cx="11" cy="11" r="2"></circle>
+          </svg>
+        </div>
+        <span>Blog<span class="text-gradient">Space</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" role="navigation" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="#explore-section" class="nav-link">Explore</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions-container">
+        <!-- Rendered dynamically by js/auth.js -->
+        <a href="login.html" class="btn btn-secondary btn-sm">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-pill">
+              <span class="dot"></span>
+              <span>Discover Knowledge & Stories</span>
+            </div>
+
+            <h1 class="hero-title" id="hero-title">
+              Your Ideas Deserve to <span class="text-gradient">Be Read.</span>
+            </h1>
+
+            <p class="hero-desc">
+              Discover inspiring stories, share your knowledge, and connect with a community of passionate writers and forward-thinkers.
+            </p>
+
+            <div class="hero-cta">
+              <a href="#explore-section" class="btn btn-secondary btn-lg" id="hero-explore-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                Explore Blogs
+              </a>
+
+              <a href="create-blog.html" class="btn btn-primary btn-lg" id="hero-write-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Start Writing
+              </a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="hero-stat-item">
+                <h4>50K+</h4>
+                <p>Monthly Readers</p>
+              </div>
+              <div class="hero-stat-item">
+                <h4>1,200+</h4>
+                <p>Published Articles</p>
+              </div>
+              <div class="hero-stat-item">
+                <h4>100%</h4>
+                <p>Free & Open Access</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-card-preview">
+              <img 
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop&q=80" 
+                alt="Architecture of Scalable Web Applications" 
+              />
+              <div class="hero-card-preview-body">
+                <span class="badge badge-tech" style="margin-bottom: 0.5rem;">Featured Spotlight</span>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">
+                  <a href="post.html?id=post-101">The Architecture of Scalable Web Applications in 2026</a>
+                </h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem;">
+                  Modern web applications have evolved far past monolithic single-page apps. Discover how modern teams scale edge nodes.
+                </p>
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--text-light);">
+                  <span>By Alex Morgan</span>
+                  <span>5 min read</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-glass-card">
+              <div class="icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+              </div>
+              <div>
+                <strong style="font-size: 0.875rem; display: block; color: var(--text-main);">Publish Instantly</strong>
+                <span style="font-size: 0.775rem; color: var(--text-muted);">Built-in rich editor & live preview</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explorer, Search & Filter Section -->
+    <section class="filter-search-section" id="explore-section">
+      <div class="container">
+        <div class="filter-bar-wrapper">
+          <div class="search-and-sort">
+            <div class="search-box">
+              <span class="search-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </span>
+              <input 
+                type="search" 
+                id="search-input" 
+                placeholder="Search articles by title, keywords, or author..." 
+                aria-label="Search articles" 
+              />
+              <button class="clear-search-btn" id="clear-search-btn" title="Clear search" aria-label="Clear search">
+                ✕
+              </button>
+            </div>
+
+            <select class="sort-select" id="sort-select" aria-label="Sort articles by">
+              <option value="latest">Sort: Newest First</option>
+              <option value="oldest">Sort: Oldest First</option>
+              <option value="views">Sort: Most Viewed</option>
+              <option value="likes">Sort: Most Liked</option>
+            </select>
+          </div>
+
+          <div class="category-chips" role="tablist" aria-label="Article categories">
+            <button class="category-chip active" data-category="All" role="tab" aria-selected="true">All Topics</button>
+            <button class="category-chip" data-category="Technology" role="tab" aria-selected="false">Technology</button>
+            <button class="category-chip" data-category="Programming" role="tab" aria-selected="false">Programming</button>
+            <button class="category-chip" data-category="Artificial Intelligence" role="tab" aria-selected="false">Artificial Intelligence</button>
+            <button class="category-chip" data-category="Productivity" role="tab" aria-selected="false">Productivity</button>
+            <button class="category-chip" data-category="Lifestyle" role="tab" aria-selected="false">Lifestyle</button>
+            <button class="category-chip" data-category="Education" role="tab" aria-selected="false">Education</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Posts Grid Section -->
+    <section class="blogs-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Latest Articles</h2>
+            <p class="section-subtitle" id="active-filter-count">Browse handcrafted stories from our community.</p>
+          </div>
+        </div>
+
+        <div class="blog-grid" id="blog-grid" aria-live="polite">
+          <!-- Dynamically populated by js/blog.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section" aria-labelledby="newsletter-heading">
+      <div class="container">
+        <div class="newsletter-card">
+          <div class="newsletter-content">
+            <h2 class="newsletter-title" id="newsletter-heading">Stay Curious. Stay Ahead.</h2>
+            <p class="newsletter-desc">
+              Subscribe to the BlogSpace weekly digest for curated software engineering guides, product insights, and inspiring ideas delivered right to your inbox.
+            </p>
+            <form class="newsletter-form" id="newsletter-form" novalidate>
+              <input 
+                type="email" 
+                class="newsletter-input" 
+                id="newsletter-email" 
+                placeholder="Enter your email address..." 
+                required 
+                aria-label="Email address for newsletter"
+              />
+              <button type="submit" class="newsletter-btn">Subscribe Free</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+              </svg>
+            </div>
+            <span>Blog<span class="text-gradient">Space</span></span>
+          </a>
+          <p class="footer-desc">
+            A modern, responsive open platform for passionate writers and curious readers to discover and share knowledge.
+          </p>
+          <div class="social-links">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore Topics</h4>
+          <div class="footer-links">
+            <a href="#explore-section" class="footer-link">Technology</a>
+            <a href="#explore-section" class="footer-link">Programming</a>
+            <a href="#explore-section" class="footer-link">Artificial Intelligence</a>
+            <a href="#explore-section" class="footer-link">Productivity & Habits</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home Feed</a>
+            <a href="create-blog.html" class="footer-link">Write an Article</a>
+            <a href="dashboard.html" class="footer-link">Author Dashboard</a>
+            <a href="register.html" class="footer-link">Create Account</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>About Project</h4>
+          <div class="footer-links">
+            <a href="login.html" class="footer-link">Demo Login</a>
+            <a href="register.html" class="footer-link">Demo Register</a>
+            <span class="footer-link" style="opacity: 0.7;">Pure HTML5 / CSS3 / Vanilla JS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 BlogSpace. All rights reserved. Built with semantic HTML5, CSS3, and Vanilla JavaScript.</p>
+        <p>Demonstration & Internship Project</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/blog.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

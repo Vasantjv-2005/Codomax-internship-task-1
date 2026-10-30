@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create and publish articles on BlogSpace using our clean, modern rich-text editor." />
+  <title>Create Article - BlogSpace</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="BlogSpace Homepage">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+          </svg>
+        </div>
+        <span>Blog<span class="text-gradient">Space</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html" class="nav-link">Home Feed</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions-container">
+        <!-- Rendered dynamically by js/auth.js -->
+      </div>
+    </div>
+  </header>
+
+  <main class="editor-layout">
+    <div class="container">
+      <div class="editor-header">
+        <div>
+          <h1 id="page-heading-title" style="font-size: 2.2rem; letter-spacing: -0.02em;">Write a New Article</h1>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Draft your thoughts, format with ease, and publish to the global community.</p>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <a href="dashboard.html" class="btn btn-secondary btn-sm" id="cancel-editor-btn">Cancel</a>
+          <button type="button" class="btn btn-secondary btn-sm" id="toggle-preview-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <span id="preview-btn-label">Live Preview</span>
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" id="save-draft-btn">Save as Draft</button>
+          <button type="button" class="btn btn-primary btn-sm" id="publish-post-btn">Publish Article</button>
+        </div>
+      </div>
+
+      <!-- Live Preview Container (Toggled via button) -->
+      <div id="preview-panel" class="editor-card" style="display: none; margin-bottom: 2rem; border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+          <h3 style="font-size: 1.1rem; color: var(--primary);">Article Live Reader Preview</h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Previewing how readers see your article</span>
+        </div>
+        <div id="preview-content-rendered" class="live-preview-content">
+          <!-- Live rendered preview -->
+        </div>
+      </div>
+
+      <!-- Editor Form Grid -->
+      <form id="blog-editor-form" class="editor-grid" novalidate>
+        <!-- Left: Main Content & Title Area -->
+        <div class="editor-card">
+          <!-- Title -->
+          <div class="form-group">
+            <label for="blog-title" class="form-label">Article Title *</label>
+            <input 
+              type="text" 
+              id="blog-title" 
+              class="form-control" 
+              placeholder="e.g., Understanding Modern Frontend Architecture in 2026" 
+              maxlength="120" 
+              required 
+            />
+            <div class="char-counter" id="title-char-counter">0 / 120 characters</div>
+            <div class="invalid-feedback" id="title-feedback">Please provide an article title (minimum 5 characters).</div>
+          </div>
+
+          <!-- Excerpt -->
+          <div class="form-group">
+            <label for="blog-excerpt" class="form-label">Excerpt / Short Summary *</label>
+            <textarea 
+              id="blog-excerpt" 
+              class="form-control" 
+              rows="3" 
+              placeholder="A brief 1-2 sentence hook that appears on blog cards and search engines..." 
+              maxlength="260" 
+              required
+            ></textarea>
+            <div class="char-counter" id="excerpt-char-counter">0 / 260 characters</div>
+            <div class="invalid-feedback" id="excerpt-feedback">Please provide a short summary for your article.</div>
+          </div>
+
+          <!-- Content Editor Toolbar & Writing Area -->
+          <div class="form-group">
+            <label class="form-label">Article Body *</label>
+            
+            <div class="editor-toolbar" role="toolbar" aria-label="Formatting options">
+              <button type="button" class="toolbar-btn" data-command="bold" title="Bold (Ctrl+B)"><strong>B</strong></button>
+              <button type="button" class="toolbar-btn" data-command="italic" title="Italic (Ctrl+I)"><em>I</em></button>
+              <button type="button" class="toolbar-btn" data-command="strikeThrough" title="Strikethrough"><s>S</s></button>
+              
+              <div class="toolbar-separator"></div>
+
+              <button type="button" class="toolbar-btn" data-command="formatBlock" data-val="h2" title="Heading 2">H2</button>
+              <button type="button" class="toolbar-btn" data-command="formatBlock" data-val="h3" title="Heading 3">H3</button>
+              <button type="button" class="toolbar-btn" data-command="formatBlock" data-val="p" title="Paragraph">¶</button>
+
+              <div class="toolbar-separator"></div>
+
+              <button type="button" class="toolbar-btn" data-command="insertUnorderedList" title="Bullet List">• List</button>
+              <button type="button" class="toolbar-btn" data-command="insertOrderedList" title="Numbered List">1. List</button>
+              <button type="button" class="toolbar-btn" data-command="formatBlock" data-val="blockquote" title="Quote">❝ Quote</button>
+
+              <div class="toolbar-separator"></div>
+
+              <button type="button" class="toolbar-btn" id="insert-link-btn" title="Insert Link">🔗 Link</button>
+              <button type="button" class="toolbar-btn" data-command="removeFormat" title="Clear Formatting">🧹 Clear</button>
+            </div>
+
+            <div 
+              id="editor-body" 
+              class="editor-content-area" 
+              contenteditable="true" 
+              role="textbox" 
+              aria-multiline="true"
+              placeholder="Start writing your story here... Use the toolbar above to style headings, quotes, and lists."
+            ></div>
+            <div class="invalid-feedback" id="content-feedback">Article content cannot be empty (minimum 20 characters).</div>
+          </div>
+        </div>
+
+        <!-- Right: Publishing Metadata & Image -->
+        <div class="editor-card">
+          <h3 style="font-size: 1.15rem; margin-bottom: 1.25rem;">Article Settings</h3>
+
+          <!-- Category -->
+          <div class="form-group">
+            <label for="blog-category" class="form-label">Category *</label>
+            <select id="blog-category" class="form-control" required>
+              <option value="" disabled selected>Select a category</option>
+              <option value="Technology">Technology</option>
+              <option value="Programming">Programming</option>
+              <option value="Artificial Intelligence">Artificial Intelligence</option>
+              <option value="Productivity">Productivity</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Education">Education</option>
+            </select>
+            <div class="invalid-feedback" id="category-feedback">Please choose a category.</div>
+          </div>
+
+          <!-- Featured Image -->
+          <div class="form-group">
+            <label for="blog-image-url" class="form-label">Featured Image URL</label>
+            <input 
+              type="url" 
+              id="blog-image-url" 
+              class="form-control" 
+              placeholder="https://images.unsplash.com/..." 
+            />
+
+            <span style="font-size: 0.785rem; color: var(--text-muted); display: block; margin-top: 0.5rem;">
+              Or pick a royalty-free preset thumbnail:
+            </span>
+
+            <div class="presets-grid" id="presets-grid">
+              <div class="preset-thumb-btn" data-url="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop&q=80">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300" alt="Tech Preset" />
+                <span>Tech</span>
+              </div>
+              <div class="preset-thumb-btn" data-url="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1000&auto=format&fit=crop&q=80">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300" alt="Code Preset" />
+                <span>Code</span>
+              </div>
+              <div class="preset-thumb-btn" data-url="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300" alt="AI Preset" />
+                <span>AI</span>
+              </div>
+              <div class="preset-thumb-btn" data-url="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000&auto=format&fit=crop&q=80">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=300" alt="Desk Preset" />
+                <span>Productivity</span>
+              </div>
+              <div class="preset-thumb-btn" data-url="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1000&auto=format&fit=crop&q=80">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300" alt="Nature Preset" />
+                <span>Lifestyle</span>
+              </div>
+              <div class="preset-thumb-btn" data-url="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1000&auto=format&fit=crop&q=80">
+                <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=300" alt="Books Preset" />
+                <span>Education</span>
+              </div>
+            </div>
+
+            <!-- Image Preview Box -->
+            <div class="image-preview-box" id="image-preview-box">
+              <span id="image-preview-placeholder" style="font-size: 0.8rem; color: var(--text-light);">Thumbnail Preview</span>
+              <img id="image-preview-img" src="" alt="Thumbnail preview" style="display: none;" />
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="form-group">
+            <label class="form-label">Tags (Press Enter or Comma)</label>
+            <div class="tags-input-container" id="tags-container">
+              <!-- Dynamically populated tag chips -->
+              <input type="text" id="tag-input" placeholder="Add a tag..." />
+            </div>
+            <span style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.25rem; display: block;">
+              e.g., JavaScript, WebDev, Design
+            </span>
+          </div>
+
+          <!-- Publish Status Switch -->
+          <div class="form-group">
+            <label for="post-status-select" class="form-label">Publication Status</label>
+            <select id="post-status-select" class="form-control">
+              <option value="published">Ready to Publish</option>
+              <option value="draft">Save as Draft</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Link Input Prompt Modal -->
+  <div class="modal-overlay" id="link-modal" role="dialog" aria-modal="true" aria-labelledby="link-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="link-modal-title">Insert Hyperlink</h3>
+        <button class="modal-close-btn" id="close-link-modal" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="link-url-input" class="form-label">Destination URL</label>
+          <input type="url" id="link-url-input" class="form-control" placeholder="https://example.com" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" id="cancel-link-btn">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="confirm-link-btn">Insert Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/blog.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Auth Guard
+      if (!Auth.requireAuth()) return;
+      Auth.renderNavAuthState();
+
+      const currentUser = Auth.getCurrentUser();
+
+      // 2. Elements
+      const titleInput = document.getElementById('blog-title');
+      const excerptInput = document.getElementById('blog-excerpt');
+      const categorySelect = document.getElementById('blog-category');
+      const imageUrlInput = document.getElementById('blog-image-url');
+      const imagePreviewBox = document.getElementById('image-preview-box');
+      const imagePreviewImg = document.getElementById('image-preview-img');
+      const imagePreviewPlaceholder = document.getElementById('image-preview-placeholder');
+      const editorBody = document.getElementById('editor-body');
+      const statusSelect = document.getElementById('post-status-select');
+      const pageHeading = document.getElementById('page-heading-title');
+
+      const titleCharCounter = document.getElementById('title-char-counter');
+      const excerptCharCounter = document.getElementById('excerpt-char-counter');
+
+      const titleFeedback = document.getElementById('title-feedback');
+      const excerptFeedback = document.getElementById('excerpt-feedback');
+      const contentFeedback = document.getElementById('content-feedback');
+      const categoryFeedback = document.getElementById('category-feedback');
+
+      const saveDraftBtn = document.getElementById('save-draft-btn');
+      const publishPostBtn = document.getElementById('publish-post-btn');
+      const togglePreviewBtn = document.getElementById('toggle-preview-btn');
+      const previewPanel = document.getElementById('preview-panel');
+      const previewContentRendered = document.getElementById('preview-content-rendered');
+      const previewBtnLabel = document.getElementById('preview-btn-label');
+
+      // Tags management
+      const tagsContainer = document.getElementById('tags-container');
+      const tagInput = document.getElementById('tag-input');
+      let tagsList = ['Coding', 'WebDev'];
+
+      function renderTags() {
+        // Remove existing tag items
+        tagsContainer.querySelectorAll('.tag-item').forEach(el => el.remove());
+
+        tagsList.forEach((tag, idx) => {
+          const tagEl = document.createElement('span');
+          tagEl.className = 'tag-item';
+          tagEl.innerHTML = `
+            #${sanitizeHTML(tag)}
+            <span class="tag-remove" data-idx="${idx}" title="Remove tag">&times;</span>
+          `;
+          tagsContainer.insertBefore(tagEl, tagInput);
+        });
+
+        // Attach tag remove listeners
+        tagsContainer.querySelectorAll('.tag-remove').forEach(rmBtn => {
+          rmBtn.addEventListener('click', (e) => {
+            const idx = parseInt(e.target.getAttribute('data-idx'));
+            tagsList.splice(idx, 1);
+            renderTags();
+          });
+        });
+      }
+
+      tagInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ',') {
+          e.preventDefault();
+          const val = tagInput.value.replace(',', '').trim();
+          if (val && !tagsList.includes(val)) {
+            tagsList.push(val);
+            renderTags();
+          }
+          tagInput.value = '';
+        } else if (e.key === 'Backspace' && !tagInput.value && tagsList.length > 0) {
+          tagsList.pop();
+          renderTags();
+        }
+      });
+
+      renderTags();
+
+      // 3. Image URL & Preset Selection
+      function updateImagePreview(url) {
+        if (url) {
+          imagePreviewImg.src = url;
+          imagePreviewImg.style.display = 'block';
+          imagePreviewPlaceholder.style.display = 'none';
+        } else {
+          imagePreviewImg.style.display = 'none';
+          imagePreviewPlaceholder.style.display = 'block';
+        }
+      }
+
+      imageUrlInput.addEventListener('input', () => {
+        updateImagePreview(imageUrlInput.value.trim());
+      });
+
+      document.querySelectorAll('.preset-thumb-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.preset-thumb-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          const url = btn.getAttribute('data-url');
+          imageUrlInput.value = url;
+          updateImagePreview(url);
+        });
+      });
+
+      // 4. Character Counters
+      titleInput.addEventListener('input', () => {
+        titleCharCounter.textContent = `${titleInput.value.length} / 120 characters`;
+      });
+
+      excerptInput.addEventListener('input', () => {
+        excerptCharCounter.textContent = `${excerptInput.value.length} / 260 characters`;
+      });
+
+      // 5. Rich Text Toolbar Commands
+      document.querySelectorAll('.toolbar-btn[data-command]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const command = btn.getAttribute('data-command');
+          const val = btn.getAttribute('data-val') || null;
+          document.execCommand(command, false, val);
+          editorBody.focus();
+        });
+      });
+
+      // Link Modal handling
+      const insertLinkBtn = document.getElementById('insert-link-btn');
+      const linkModal = document.getElementById('link-modal');
+      const closeLinkModal = document.getElementById('close-link-modal');
+      const cancelLinkBtn = document.getElementById('cancel-link-btn');
+      const confirmLinkBtn = document.getElementById('confirm-link-btn');
+      const linkUrlInput = document.getElementById('link-url-input');
+
+      if (insertLinkBtn) {
+        insertLinkBtn.addEventListener('click', () => {
+          linkModal.classList.add('active');
+          linkUrlInput.value = 'https://';
+          linkUrlInput.focus();
+        });
+      }
+
+      function hideLinkModal() {
+        linkModal.classList.remove('active');
+      }
+
+      if (closeLinkModal) closeLinkModal.addEventListener('click', hideLinkModal);
+      if (cancelLinkBtn) cancelLinkBtn.addEventListener('click', hideLinkModal);
+
+      if (confirmLinkBtn) {
+        confirmLinkBtn.addEventListener('click', () => {
+          const url = linkUrlInput.value.trim();
+          if (url && url !== 'https://') {
+            document.execCommand('createLink', false, url);
+          }
+          hideLinkModal();
+          editorBody.focus();
+        });
+      }
+
+      // 6. Live Preview Toggle
+      let isPreviewActive = false;
+      togglePreviewBtn.addEventListener('click', () => {
+        isPreviewActive = !isPreviewActive;
+        if (isPreviewActive) {
+          previewPanel.style.display = 'block';
+          previewBtnLabel.textContent = 'Hide Preview';
+          
+          const rawTitle = titleInput.value.trim() || 'Untitled Article';
+          const rawExcerpt = excerptInput.value.trim() || 'No excerpt provided.';
+          const rawContent = editorBody.innerHTML || '<p>No content written yet.</p>';
+          const imgUrl = imageUrlInput.value.trim() || Blog.DEFAULT_THUMBNAIL;
+
+          previewContentRendered.innerHTML = `
+            <div style="margin-bottom: 1.5rem;">
+              <span class="badge ${Blog.getCategoryClass(categorySelect.value)}">${sanitizeHTML(categorySelect.value || 'General')}</span>
+              <h2 style="font-size: 1.85rem; margin: 0.5rem 0;">${sanitizeHTML(rawTitle)}</h2>
+              <p style="color: var(--text-muted); font-size: 1.05rem; font-style: italic;">${sanitizeHTML(rawExcerpt)}</p>
+            </div>
+            ${imgUrl ? `<div style="max-height: 280px; overflow: hidden; border-radius: var(--radius-md); margin-bottom: 1.5rem;"><img src="${imgUrl}" style="width: 100%; height: 280px; object-fit: cover;" alt="Preview" /></div>` : ''}
+            <div>${rawContent}</div>
+          `;
+          previewPanel.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          previewPanel.style.display = 'none';
+          previewBtnLabel.textContent = 'Live Preview';
+        }
+      });
+
+      // 7. Check if Editing Existing Post via ?id=...
+      const urlParams = new URLSearchParams(window.location.search);
+      const editingPostId = urlParams.get('id');
+      let currentPost = null;
+
+      if (editingPostId) {
+        currentPost = getPostById(editingPostId);
+        if (currentPost) {
+          // Fill form fields
+          pageHeading.textContent = 'Edit Article';
+          document.title = `Edit: ${currentPost.title} - BlogSpace`;
+          titleInput.value = currentPost.title;
+          excerptInput.value = currentPost.excerpt || '';
+          categorySelect.value = currentPost.category || 'Technology';
+          imageUrlInput.value = currentPost.image || '';
+          updateImagePreview(currentPost.image || '');
+          editorBody.innerHTML = currentPost.content || '';
+          statusSelect.value = currentPost.status || 'published';
+          tagsList = currentPost.tags || [];
+          renderTags();
+
+          titleCharCounter.textContent = `${titleInput.value.length} / 120 characters`;
+          excerptCharCounter.textContent = `${excerptInput.value.length} / 260 characters`;
+        }
+      }
+
+      // 8. Form Validation & Post Saving
+      async function handleSave(status) {
+        const title = titleInput.value.trim();
+        const excerpt = excerptInput.value.trim();
+        const category = categorySelect.value;
+        const content = editorBody.innerHTML.trim();
+        const cleanContentText = editorBody.innerText.trim();
+        const image = imageUrlInput.value.trim() || Blog.DEFAULT_THUMBNAIL;
+
+        let isValid = true;
+
+        // Reset
+        [titleInput, excerptInput, categorySelect].forEach(el => el.classList.remove('is-invalid'));
+        contentFeedback.classList.remove('show');
+
+        if (!title || title.length < 5) {
+          titleInput.classList.add('is-invalid');
+          titleFeedback.textContent = 'Article title must be at least 5 characters.';
+          isValid = false;
+        }
+
+        if (!excerpt || excerpt.length < 10) {
+          excerptInput.classList.add('is-invalid');
+          excerptFeedback.textContent = 'Excerpt must be at least 10 characters.';
+          isValid = false;
+        }
+
+        if (!category) {
+          categorySelect.classList.add('is-invalid');
+          categoryFeedback.textContent = 'Please choose a category.';
+          isValid = false;
+        }
+
+        if (!cleanContentText || cleanContentText.length < 20) {
+          contentFeedback.classList.add('show');
+          isValid = false;
+        }
+
+        if (!isValid) {
+          showToast('Please fix the highlighted form errors.', 'error');
+          return;
+        }
+
+        const postData = {
+          title,
+          excerpt,
+          category,
+          content,
+          image,
+          tags: tagsList,
+          status,
+          readTime: calculateReadingTime(cleanContentText),
+          authorId: currentUser.id,
+          authorName: currentUser.name,
+          authorAvatar: currentUser.avatar
+        };
+
+        if (currentPost) {
+          // Update existing
+          updatePost(currentPost.id, postData);
+          showToast(status === 'published' ? 'Article published successfully!' : 'Draft updated successfully!', 'success');
+        } else {
+          // Save new
+          saveNewPost(postData);
+          showToast(status === 'published' ? 'Your new article has been published!' : 'Saved as draft in your dashboard.', 'success');
+        }
+
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 600);
+      }
+
+      // Save as draft button
+      saveDraftBtn.addEventListener('click', () => handleSave('draft'));
+
+      // Publish article button
+      publishPostBtn.addEventListener('click', () => handleSave('published'));
+    });
+  </script>
+</body>
+</html>
