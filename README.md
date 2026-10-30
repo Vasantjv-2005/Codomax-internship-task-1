@@ -41,7 +41,7 @@
 - [💾 LocalStorage Data Schema](#-localstorage-data-schema)
 - [📋 Verification Checklist](#-verification-checklist)
 - [🛡️ Client-Side vs. Production Architecture](#️-client-side-vs-production-architecture)
-- [👨‍💻 Submission & Internship Context](#-submission--internship-context)
+- [👨‍💻 Submission & Internship Context](#-submission--internship-context-)
 
 ---
 ## Automated Code Review
