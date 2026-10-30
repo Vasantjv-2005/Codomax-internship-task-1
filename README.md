@@ -43,7 +43,9 @@
 - [👨‍💻 Submission & Internship Context](#-submission--internship-context)
 
 ---
+## Automated Code Review
 
+This project uses CodeRabbit to review pull requests.
 ## 📌 Project Overview
 
 **BlogSpace** is an editorial, full-featured web publishing application developed for **Codomax Internship Task 1**.
