@@ -22,6 +22,7 @@
 
 ## 📑 Table of Contents
 
+- [Automated Code Review](#automated-code-review)
 - [📌 Project Overview](#-project-overview)
 - [🚀 Quick Start & Local Setup](#-quick-start--local-setup)
 - [🔑 Demo Credentials](#-demo-credentials)
